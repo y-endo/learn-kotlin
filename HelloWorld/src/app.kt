@@ -1,22 +1,7 @@
 import java.util.Arrays
+import sample.*
 
-class Sample {
-    var name = "名無し"
-    var age = 20
-        set(value) {
-            if (value < 0) {
-                println("年齢が不正です。")
-            } else {
-                field = value
-            }
-        }
-
-    fun intro() {
-        println("私の名前は${name}です。年齢は${age}です。")
-    }
-}
-
-class Sample2 constructor(name: String, age: Int) {
+open class Sample2 constructor(name: String, age: Int) {
     var name: String
     var myAge: Int
 
@@ -25,8 +10,15 @@ class Sample2 constructor(name: String, age: Int) {
         myAge = age
     }
 
-    fun intro() {
+    open fun intro() {
         println("${this.name}、${myAge}")
+    }
+}
+
+class Sample3(name: String, age: Int): Sample2(name, age) {
+    override fun intro() {
+        println("sample3")
+        super.intro()
     }
 }
 
@@ -143,4 +135,7 @@ fun main() {
 
     val sample2 = Sample2("遠藤", 26)
     sample2.intro()
+
+    val sample3 = Sample3("勇気", 26)
+    sample3.intro()
 }
